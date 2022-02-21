@@ -12,11 +12,7 @@ def get_exif(image):
 
 
 def get_labeled_exif(exif):
-    labeled = {}
-    for (key, val) in exif.items():
-        labeled[TAGS.get(key)] = val
-
-    return labeled
+    return {TAGS.get(key): val for (key, val) in exif.items()}
 
 im = Image.open(sys.argv[1])
 

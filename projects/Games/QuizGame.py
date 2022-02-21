@@ -16,7 +16,7 @@ if answer.lower() == 'central processing unit':
     score += 1
 else:
     print('Wrong')
- 
+
 answer = input(' What is GPU stands for? \n ')
 if answer.lower() == 'graphical processing unit':
     print("Correct")
@@ -44,6 +44,6 @@ if answer.lower() == 'input device':
     score += 1
 else:
     print('Wrong')
-    
-print("You got the " + str(score)+ " correct answers")
-print("You got the " + str((score/5) *100)+ " correct answers")
+
+print(f'You got the {score} correct answers')
+print(f'You got the {str((score/5) *100)} correct answers')

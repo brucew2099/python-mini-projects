@@ -73,7 +73,6 @@ class MyBot(Wechaty):
             # reply the image
             await msg.say(hd_file_box)
 
-        # pylint: disable=C0301
         elif msg_type in [MessageType.MESSAGE_TYPE_AUDIO, MessageType.MESSAGE_TYPE_ATTACHMENT, MessageType.MESSAGE_TYPE_VIDEO]:
             logger.info('receving file ...')
             file_box = await msg.to_file_box()
@@ -163,9 +162,6 @@ class MyBot(Wechaty):
 
             logger.info('find friend<%d>', len(friends))
             logger.info(friends)
-
-        else:
-            pass
 
         if msg.type() == MessageType.MESSAGE_TYPE_UNSPECIFIED:
             talker = msg.talker()

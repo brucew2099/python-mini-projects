@@ -38,16 +38,14 @@ def upload_file_robots(filename):
     data = {'file': open(filename, 'rb')}  # post jason
     response = requests.post(url=url, files=data)  # post 请求上传文件
     json_res = response.json()  # 返回转为json
-    media_id = json_res['media_id']  # 提取返回ID
-    return media_id  # 返回请求状态
+    return json_res['media_id']
 
 
 def send_file_robots(media_id):
     wx_url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=%(key)s' % {"key": wecom_key}
     data = {"msgtype": "file",
             "file": {"media_id": media_id}}  # post json
-    r = requests.post(url=wx_url, json=data)
-    return r
+    return requests.post(url=wx_url, json=data)
 
 
 if __name__ == '__main__':

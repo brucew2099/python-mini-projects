@@ -21,9 +21,9 @@ with open(location, 'rb') as book:
 		total_pages = reader.numPages
 
 		print('\n')
-		print('Location of File  -------> ' + location)
+		print(f'Location of File  -------> {location}')
 		print('\n')
-		print('Total Number of Pages -------> ' + str(total_pages))
+		print(f'Total Number of Pages -------> {str(total_pages)}')
 
 		try:
 			for page in range(total_pages):

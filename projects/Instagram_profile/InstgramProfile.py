@@ -21,7 +21,7 @@ def main(username):
         posts = re.findall(r'\d+[,]*', data[2])[0]
         name = re.findall(r'name":"\w*[\s]+\w*"', page.text)[-1][7:-1]
         aboutinfo = re.findall(r'"description":"([^"]+)"', page.text)[0]
-        instagram_profile = {
+        return {
             'success': True,
             'profile': {
                 'name': name,
@@ -34,11 +34,10 @@ def main(username):
             }
         }
     else:
-        instagram_profile = {
+        return {
             'success': False,
             'profile': {}
         }
-    return instagram_profile
 
 
 #  python InstgramProfile.py username

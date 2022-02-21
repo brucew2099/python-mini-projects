@@ -21,7 +21,7 @@ def fetch(page_no, verbose=False):
     if verbose:
         print('Fetching Page {}...'.format(i))
     try:
-        res = requests.get('https://news.ycombinator.com/?p=' + str(i))
+        res = requests.get(f'https://news.ycombinator.com/?p={str(i)}')
         only_td = SoupStrainer('td')
         soup = BeautifulSoup(res.content, 'html.parser', parse_only=only_td)
         tdtitle = soup.find_all('td', attrs={'class': 'title'})

@@ -72,9 +72,7 @@ enemyX_change = []
 enemyY_change = []
 
 number_of_enemy = 6
-for i in range(number_of_enemy):
-
-
+for _ in range(number_of_enemy):
 	enemyimg.append(pygame.image.load("ens.png"))
 
 	enemyX.append(random.randint(0,736))
@@ -109,11 +107,7 @@ def fire_bullet(x,y):
 def is_collision(enemyX,enemyY,playerx,playery):
 
 	distance = math.sqrt((math.pow(enemyX-bulletX,2))+(math.pow(enemyY-bulletY,2)))
-	if distance < 27:
-		return True
-
-	else:
-		return False
+	return distance < 27
 
 
 
@@ -123,7 +117,7 @@ font = pygame.font.Font("freesansbold.ttf",35)
 score_cordinate_X = 10
 Score_cordinate_Y=10
 def showscore(x,y):
-	score = font.render("Score : " + str(score_value),True,(255,255,255))
+	score = font.render(f'Score : {str(score_value)}', True, (255,255,255))
 	screen.blit(score,(x,y))
 
 
@@ -138,7 +132,7 @@ def game_over():
 
 final = pygame.font.Font("freesansbold.ttf",50)
 def final_score():
-	finalscore = final.render("Total Score : " +str(score_value) ,True,(0,255,0))
+	finalscore = final.render(f'Total Score : {str(score_value)}', True, (0,255,0))
 	screen.blit(finalscore,(280,350))
 	 
 
@@ -172,19 +166,17 @@ while running:
 			if event.key == pygame.K_RIGHT:
 				playerx_change = 5
 
-			if event.key == pygame.K_SPACE:
-				if bullet_state == "ready":
-					bulletX = playerx
-					bulletsound = mixer.Sound("bulletout.wav")
-					bulletsound.play()
-				
-					fire_bullet(bulletX,bulletY)
+			if event.key == pygame.K_SPACE and bullet_state == "ready":
+				bulletX = playerx
+				bulletsound = mixer.Sound("bulletout.wav")
+				bulletsound.play()
 
-			
+				fire_bullet(bulletX,bulletY)
 
-		if event.type == pygame.KEYUP:
-			if event.key == pygame.K_LEFT or event.key == pygame.K_LEFT:
-				playerx_change = 0
+
+
+		if event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
+			playerx_change = 0
 
 
 
@@ -199,14 +191,14 @@ while running:
 			time.sleep(2)
 
 			final_score()
-			
+
 			break
 
 
 
 
 
-			
+
 		enemyX[i] += enemyX_change[i]
 		if enemyX[i] <=0:
 			enemyX_change[i]= 4
@@ -228,7 +220,7 @@ while running:
 
 			score_value +=1
 
-		
+
 			enemyX[i] = random.randint(0,736)
 			enemyY[i] = random.randint(50,150)
 
@@ -238,20 +230,6 @@ while running:
 
 
 
-			
-
-
-			
-			
-
-			
-			
-			
-			
-
-
-
-			
 
 
 
@@ -273,7 +251,21 @@ while running:
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	# checking boundries of spacechip
 	playerx+=playerx_change
@@ -282,13 +274,13 @@ while running:
 		playerx = 0
 	elif playerx>=730:
 		playerx = 730
-	
 
-	
+
+
 	# playerx -=0.2
 	# playery -=.2
 
-	
+
 
 	# bullet movement
 	if bulletY <=0:
@@ -297,12 +289,12 @@ while running:
 	if bullet_state == "fire":
 		fire_bullet(bulletX,bulletY)
 		bulletY -= bulletY_change
-	
+
 	player(playerx,playery)
 	showscore(score_cordinate_X,Score_cordinate_Y)
 
 	author_name()
-	
+
 
 
 

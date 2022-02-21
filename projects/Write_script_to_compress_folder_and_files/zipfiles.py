@@ -5,7 +5,7 @@ import os
 
 # compress file function
 def zip_file(file_path):
-    compress_file = zipfile.ZipFile(file_path + '.zip', 'w')
+    compress_file = zipfile.ZipFile(f'{file_path}.zip', 'w')
     compress_file.write(path, compress_type=zipfile.ZIP_DEFLATED)
     compress_file.close()
 
@@ -28,7 +28,7 @@ def retrieve_file_paths(dir_name):
 
 def zip_dir(dir_path, file_paths):
     # write files and folders to a zipfile
-    compress_dir = zipfile.ZipFile(dir_path + '.zip', 'w')
+    compress_dir = zipfile.ZipFile(f'{dir_path}.zip', 'w')
     with compress_dir:
         # write each file separately
         for file in file_paths:

@@ -84,7 +84,7 @@ def update_label():
     # l1.configure(text="")
     # l1.configure(text= "Usage : " + str(x) + " bytes/sec")
     path_text.delete("1.0", "end")
-    path_text.insert(END, "Usage : " + str(x) + " bytes/sec")
+    path_text.insert(END, f'Usage : {str(x)} bytes/sec')
 
     # for updating connection status
     IPaddress = socket.gethostbyname(socket.gethostname())
