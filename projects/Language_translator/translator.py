@@ -25,7 +25,9 @@ allow = True  # variable to control correct language code input
 while allow:  # checking if language code is valid
 
     user_code = input(
-        f"Please input desired language code. To see the language code list enter 'options' \n")
+        "Please input desired language code. To see the language code list enter 'options' \n"
+    )
+
 
     if user_code == "options":  # showing language options
         print("Code : Language")  # Heading of language option menu
@@ -34,7 +36,7 @@ while allow:  # checking if language code is valid
         print()  # adding an empty space
 
     else:  # validating user input
-        for lan_code in language.keys():
+        for lan_code in language:
             if lan_code == user_code:
                 print(f"You have selected {language[lan_code]}")
                 allow = False
@@ -46,7 +48,7 @@ while True:  # starting translation loop
         "\nWrite the text you want to translate: \nTo exit the program write 'close'\n")
 
     if string == "close":  # exit program command
-        print(f"\nHave a nice Day!")
+        print('\nHave a nice Day!')
         break
 
     # translating method from googletrans

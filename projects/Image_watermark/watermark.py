@@ -26,7 +26,7 @@ def watermark_photo(input_image_path,watermark_image_path,output_image_path):
     else:
         transparent = transparent.convert('P')
     transparent.save(output_image_path,optimize=True,quality=100)
-    print("Saving"+output_image_path+"...")
+    print(f'Saving{output_image_path}...')
 
 folder = input("Enter Folder Path:")
 watermark = input("Enter Watermark Path:")
@@ -39,7 +39,8 @@ if not os.path.isdir("output"):
 
 c = 1
 for f in files:
-    if os.path.isfile(os.path.abspath(f)):
-        if f.endswith(".png") or f.endswith(".jpg"):
-            watermark_photo(f,watermark,"output/"+f)
+    if os.path.isfile(os.path.abspath(f)) and (
+        f.endswith(".png") or f.endswith(".jpg")
+    ):
+        watermark_photo(f, watermark, f'output/{f}')
 

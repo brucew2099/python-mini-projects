@@ -23,9 +23,7 @@ def Cal_IoU(GT_bbox, Pred_bbox):
     S2 = (GT_bbox[2] - GT_bbox[0] + 1) * (GT_bbox[3] - GT_bbox[1] + 1)
     S = S1 + S2 - area
 
-    #3. Calculate the IoU
-    iou = area / S
-    return iou
+    return area / S
 
 if __name__ == "__main__":
     pred_bbox = np.array([40, 40, 100, 100])

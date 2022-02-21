@@ -27,16 +27,18 @@ args.toy = False  # "store_true"
 args.with_model = "store_true"
 
 
-if not os.path.exists(default_path + "saved_model"):
-    os.mkdir(default_path + "saved_model")
+if not os.path.exists(f'{default_path}saved_model'):
+    os.mkdir(f'{default_path}saved_model')
 else:
     # if args.with_model:
-    old_model_checkpoint_path = open(
-        default_path + 'saved_model/checkpoint', 'r')
+    old_model_checkpoint_path = open(f'{default_path}saved_model/checkpoint', 'r')
     old_model_checkpoint_path = "".join(
         [
-            default_path + "saved_model/",
-            old_model_checkpoint_path.read().splitlines()[0].split('"')[1]])
+            f'{default_path}saved_model/',
+            old_model_checkpoint_path.read().splitlines()[0].split('"')[1],
+        ]
+    )
+
 
 
 print("Building dictionary...")

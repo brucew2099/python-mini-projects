@@ -60,10 +60,7 @@ def detect_align_faces(detector, sp, img):
 
 
 def shape_to_pos(shape):
-    parts = []
-    for p in shape.parts():
-        parts.append((p.x, p.y))
-
+    parts = [(p.x, p.y) for p in shape.parts()]
     left = parts[LEFT_EYE_RANGE[0]: LEFT_EYE_RANGE[-1]]
     right = parts[RIGHT_EYE_RABGE[0]: RIGHT_EYE_RABGE[-1]]
 

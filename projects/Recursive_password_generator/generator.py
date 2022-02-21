@@ -2,16 +2,14 @@ import random
 import string
 
 def stretch(text,maxlength):
-    if len(text) < maxlength:
-        randomChar = get_random_char()
-        return stretch(text+randomChar,maxlength)
-    else:
+    if len(text) >= maxlength:
         return text
+    randomChar = get_random_char()
+    return stretch(text+randomChar,maxlength)
 
 def get_random_char():
     chars = string.printable
-    randomChar = chars[random.randint(0,len(chars)-1)]
-    return randomChar
+    return chars[random.randint(0,len(chars)-1)]
 
 while 1:
     maxlen = input(' [?] Enter a length for your password (e for exit): ')

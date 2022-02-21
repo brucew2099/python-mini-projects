@@ -15,12 +15,9 @@ class Snake:
 
     def __init__(self):
         self.body_size = BODY_PARTS
-        self.coordinates = []
         self.squares = []
 
-        for i in range(0, BODY_PARTS):
-            self.coordinates.append([0, 0])
-
+        self.coordinates = [[0, 0] for _ in range(BODY_PARTS)]
         for x, y in self.coordinates:
             square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR, tag="snake")
             self.squares.append(square)
@@ -88,34 +85,35 @@ def change_direction(new_direction):
 
     global direction
 
-    if new_direction == 'left':
-        if direction != 'right':
-            direction = new_direction
-    elif new_direction == 'right':
-        if direction != 'left':
-            direction = new_direction
-    elif new_direction == 'up':
-        if direction != 'down':
-            direction = new_direction
-    elif new_direction == 'down':
-        if direction != 'up':
-            direction = new_direction
+    if (
+        new_direction == 'left'
+        and direction != 'right'
+        or new_direction != 'left'
+        and new_direction == 'right'
+        and direction != 'left'
+        or new_direction != 'left'
+        and new_direction != 'right'
+        and new_direction == 'up'
+        and direction != 'down'
+        or new_direction != 'left'
+        and new_direction != 'right'
+        and new_direction != 'up'
+        and new_direction == 'down'
+        and direction != 'up'
+    ):
+        direction = new_direction
 
 
 def check_collisions(snake):
 
     x, y = snake.coordinates[0]
 
-    if x < 0 or x >= GAME_WIDTH:
+    if x < 0 or x >= GAME_WIDTH or y < 0 or y >= GAME_HEIGHT:
         return True
-    elif y < 0 or y >= GAME_HEIGHT:
-        return True
-
-    for body_part in snake.coordinates[1:]:
-        if x == body_part[0] and y == body_part[1]:
-            return True
-
-    return False
+    return any(
+        x == body_part[0] and y == body_part[1]
+        for body_part in snake.coordinates[1:]
+    )
 
 
 def game_over():

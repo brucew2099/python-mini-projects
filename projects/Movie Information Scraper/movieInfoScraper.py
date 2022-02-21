@@ -5,18 +5,11 @@ import requests
 
 
 def getMovieDetails(movieName):
-    # Base URL of IMDB website
-    url = 'https://www.imdb.com'
-
-    # Query to find movie title
     query = '/search/title?title='
-
-    # Empty dictionary to store movie Details
-    movieDetails = {}
-
     # Query formed
     movienamequery = query+'+'.join(movieName.strip().split(' '))
 
+    url = 'https://www.imdb.com'
     # WebPage is obtained and parsed
     html = requests.get(url+movienamequery+'&title_type=feature')
     bs = BeautifulSoup(html.text, 'html.parser')
@@ -28,8 +21,7 @@ def getMovieDetails(movieName):
         return None
 
     movielink = url+result.a.attrs['href']
-    movieDetails['name'] = result.a.text
-
+    movieDetails = {'name': result.a.text}
     # Gets the page with movie details
     html = requests.get(movielink)
     bs = BeautifulSoup(html.text, 'html.parser')
@@ -71,7 +63,7 @@ def getMovieDetails(movieName):
         movieDetails['writers']='Not found'
 
     # The plot is seperate AJAX call and does not come in the html page, So one more request to plotsummary page
-    html = requests.get(movielink+'plotsummary')
+    html = requests.get(f'{movielink}plotsummary')
     bs = BeautifulSoup(html.text, 'html.parser')
 
     # Plot

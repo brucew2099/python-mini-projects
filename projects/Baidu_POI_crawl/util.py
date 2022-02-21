@@ -14,8 +14,8 @@ def get_baidu_poi(roi_key, city_str, baidu_ak, output):
     """
     now_time = time.strftime("%Y-%m-%d")
     page_num = 0
-    logfile = open(output + "/" + now_time + ".log", "a+", encoding="utf-8")
-    file = open(output + "/" + now_time + ".txt", "a+", encoding="utf-8")
+    logfile = open(f'{output}/{now_time}.log', "a+", encoding="utf-8")
+    file = open(f'{output}/{now_time}.txt', "a+", encoding="utf-8")
     while True:
         try:
             URL = "http://api.map.baidu.com/place/v2/search?query=" + roi_key + \
@@ -37,7 +37,11 @@ def get_baidu_poi(roi_key, city_str, baidu_ak, output):
                     j_lon = r["location"]["lng"]
                     j_area = r["area"]
                     j_add = r["address"]
-                    j_str = str(j_name) + "," + str(j_lon) + "," + str(j_lat) + "," + str(j_area) + "," + str(j_add) + "\n"
+                    j_str = (
+                        f'{str(j_name)},{str(j_lon)},{str(j_lat)},{str(j_area)},{str(j_add)}'
+                        + "\n"
+                    )
+
                     file.writelines(j_str)
             page_num += 1
             time.sleep(1)

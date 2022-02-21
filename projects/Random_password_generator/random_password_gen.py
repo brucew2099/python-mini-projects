@@ -18,7 +18,7 @@ password = []
 
 
 def generate_pass(length, array, is_alpha=False):
-    for i in range(length):
+    for _ in range(length):
         index = random.randint(0, len(array) - 1)
         character = array[index]
         if is_alpha:
@@ -37,7 +37,5 @@ generate_pass(special_len, special)
 # suffle the generated password list
 random.shuffle(password)
 # convert List To string
-gen_password = ""
-for i in password:
-    gen_password = gen_password + str(i)
+gen_password = "".join(str(i) for i in password)
 print(gen_password)
